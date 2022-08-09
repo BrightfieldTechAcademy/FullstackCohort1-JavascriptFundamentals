@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="demo">
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="getGitHubData()">Change Content</button>
+</div>
+
+<script>
+function getGitHubData() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        let response =  JSON.parse(this.responseText);
+        document.getElementById("demo").innerHTML = response.html_url
+    }
+  };
+  xhttp.open("GET", "https://api.github.com/users/olivermensahdev");
+  xhttp.send();
+}
+</script>
+
+</body>
+</html>

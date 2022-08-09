@@ -1,0 +1,36 @@
+<form id="form">
+    <input type="text" name="firstname" id="firstname" required>
+    <input type="text" name="lastname" id="lastname" required>
+
+    <input type="submit" value="Send">
+</form>
+
+<script>
+    document.getElementById('form').addEventListener('submit', function(event){
+        let firstName = document.getElementById("firstname").value 
+        let lastName = document.getElementById("lastname").value 
+        if(firstName.length <= 1 || lastName.length <= 1){
+            alert("enter appropriate names");
+            event.preventDefault()
+        }
+
+        let user = {
+            firstName,
+            lastName
+        };
+
+        fetch('http://localhost:3000/save.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8',
+            'Origin': 'http://localhost:3000/save.php'
+        },
+            body: JSON.stringify(user)
+        }).then(response => response.json()).then(data => {
+            console.log(data)
+        }).catch(err => {
+            console.log(err.message)
+        })
+        event.preventDefault()
+    })
+</script>

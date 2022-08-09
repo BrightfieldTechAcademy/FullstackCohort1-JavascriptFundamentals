@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let employees = [
+            {'name':'John','department':'Sales'},
+            {'name':'Jane','department':'Marketing'},
+            {'name':'Dave','department':'Marketing'},
+            {'name':'Dana','department':'Engineering'},
+            {'name':'Beth','department':'Marketing'},
+            {'name':'Kyle','department':'Engineering'}
+        ]
+        // TODO: don't create new array variable. Use inbuilt array methods
+        // get all names of the employees 
+        // select all employees in marketing department
+        // find the various departments
+
+        let names = employees.map(employee => employee.name)
+        console.log(names)
+
+        let marketingEmployees = employees.filter(employee => employee.department === "Marketing")
+        console.log(marketingEmployees)
+        
+        let departments = employees.reduce((alc, currentEmployee) => alc.add(currentEmployee.department), new Set())
+        console.log([...departments])
+
+
+
+    
+    </script>
+</body>
+</html>~

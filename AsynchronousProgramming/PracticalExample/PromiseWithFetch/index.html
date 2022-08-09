@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="demo">
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="getGitHubData()">Change Content</button>
+</div>
+
+<script>
+function getGitHubData() {
+  fetch("https://api.github.com/users/olivermensahdev").then(response => response.json()).then(
+    data => {
+      document.getElementById("demo").innerHTML = data.bio
+    }
+  )
+}
+</script>
+
+</body>
+</html>

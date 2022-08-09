@@ -1,0 +1,33 @@
+<form id="form" method="post">
+    <input type="text" name="firstname" id="firstname" required>
+    <input type="text" name="lastname" id="lastname" required>
+
+    <input type="submit" value="Send">
+</form>
+
+<script>
+    let form = document.getElementById('form');
+form.addEventListener('submit', function(event){
+        let formData = new FormData(form)
+        let firstName = formData.get("firstname");
+        let lastName = formData.get("lastname");
+
+        if(firstName.length <= 1 || lastName.length <= 1){
+            alert("enter appropriate names");
+            return false;
+            event.preventDefault()
+        }
+
+        fetch('http://localhost:3000/save.php', {
+        method: 'POST',
+            body: formData
+        }).then(response => response.json()).then(data => {
+            let url = new URL('https://google.com/search');
+            url.searchParams.set('q', data['firstname'])
+            window.open(url.href, "_blank");
+        }).catch(err => {
+            console.log(`Error: ${err}`)
+        })
+        event.preventDefault()
+    })
+</script>
